@@ -59,7 +59,7 @@ Player::PrintSummary()
 void
 Player::AskInfo( Player & p)
 {
-  ifstream f("playerdata.txt");
+  ifstream f("ResourceFiles/playerdata.txt");
   while ( !f.eof()  )
   {
     string line;
