@@ -1,4 +1,4 @@
-del Game.exe
+del Game.exe GameUsing_DLL.exe Engine.dll
 cd bin
 del libEngine.a
 del Engine.dll

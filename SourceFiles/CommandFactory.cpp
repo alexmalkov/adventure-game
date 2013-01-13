@@ -24,6 +24,16 @@ CommandFactory::Create( const std::string & str )
   std::string word;
   s >> word;
 
+  if (word == "save")
+  {
+	return new SaveCommand(m_pGame);
+  }
+  
+  if (word == "load")
+  {
+	return new LoadCommand(m_pGame);
+  }
+  
   if ( word == "quit" )
   {
     return new QuitCommand(m_pGame);

@@ -75,7 +75,6 @@ Player::AskInfo( Player & p)
       f >> iTmp; p.SetAge(iTmp);
       f >> g; p.SetGender( (g == 'm' ? Male : Female) );
       f >> iTmp; p.SetExperience(iTmp);
-      
     }
 
     /*
