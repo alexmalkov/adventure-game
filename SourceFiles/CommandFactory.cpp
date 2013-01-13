@@ -31,10 +31,10 @@ CommandFactory::Create( const std::string & str )
 	return new SaveCommand(m_pGame);
   }
   
-  /*if (word == "load")
+  if (word == "load")
   {
 	return new LoadCommand(m_pGame);
-  }*/
+  }
   
   if ( word == "quit" )
   {

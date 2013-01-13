@@ -24,6 +24,7 @@ public:
 	
 	ofstream f;
 	f.open("ResourceFiles/savedata.txt");
+	f<<"#player"<<endl;
 	f<< p.GetName()<<endl;
 	f<< p.GetRace()<<endl;
 	f<< p.GetClass()<<endl;

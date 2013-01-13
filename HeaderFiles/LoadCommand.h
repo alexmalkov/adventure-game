@@ -21,16 +21,25 @@ public:
 		{
 			string line;
 			f >> line;
+			if(line=="#player")
+			{
 				int i;
 				string s;
 				char c;
 				f>>s;p.SetName(s);
 				f>>s;p.SetRace(s);
 				f>>i;p.SetClass((Class)i);
-				f>>s;p.SetAge(i);
+				f>>i;p.SetAge(i);
 				f>>c;p.SetGender((c=='m'?Male:Female));
 				f>>i;p.SetExperience(i);
+			}	
 		}
+		cout<<p.GetName()<<endl;
+		cout<<p.GetRace()<<endl;
+		cout<<p.GetClass()<<endl;
+		cout<<p.GetAge()<<endl;
+		cout<<"m"<<endl;
+		cout<<p.GetExperience()<<endl;
 	}
 };
 #endif
