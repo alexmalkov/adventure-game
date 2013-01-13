@@ -22,15 +22,20 @@ public:
 	Game *g = GetGame();
 	Player p = g->GetPlayer();
 	
-	ofstream myfile;
-	myfile.open("ResourceFiles/savedata.txt");
-	myfile << p.GetName();
-	myfile << p.GetRace();
-	myfile << p.GetClass();
-	myfile << p.GetAge();
-	myfile << p.GetGender();
-	myfile << p.GetExperience();
-	myfile.close();
+	ofstream f;
+	f.open("ResourceFiles/savedata.txt");
+	f<< p.GetName()<<endl;
+	f<< p.GetRace()<<endl;
+	f<< p.GetClass()<<endl;
+	f<< p.GetAge()<<endl;
+	//char c;
+	//if(p.GetGender==0){
+	//c='m';}
+	//else {
+	//c='f';}
+	f<<'m'<<endl;
+	f<< p.GetExperience();
+	f.close();
 	}
 };
 #endif

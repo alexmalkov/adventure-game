@@ -11,7 +11,7 @@
 #include "UnknownCommand.h"
 #include "MoveCommand.h"
 #include "SaveCommand.h"
-//#include "LoadCommand.h"
+#include "LoadCommand.h"
 #include "Game.h"
 #include <sstream>
 #include <string>
