@@ -29,11 +29,6 @@ public:
 	f<< p.GetRace()<<endl;
 	f<< p.GetClass()<<endl;
 	f<< p.GetAge()<<endl;
-	//char c;
-	//if(p.GetGender==0){
-	//c='m';}
-	//else {
-	//c='f';}
 	f<<'m'<<endl;
 	f<< p.GetExperience();
 	f.close();
