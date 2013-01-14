@@ -1,7 +1,0 @@
-#player
-Anssi
-1
-0
-32
-m
-0

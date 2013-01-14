@@ -16,24 +16,39 @@ public:
 	{
 		Game *g = GetGame();
 		Player p = g->GetPlayer();
-		ifstream f("ResourceFiles/savedata.txt");
-		while(!f.eof())
+		
+		
+		try
 		{
-			string line;
-			f >> line;
-			if(line=="#player")
+			ifstream f("ResourceFiles/savedata.txt");
+			
+			if(!f.good())
 			{
-				int i;
-				string s;
-				char c;
-				f>>s;p.SetName(s);
-				f>>s;p.SetRace(s);
-				f>>i;p.SetClass((Class)i);
-				f>>i;p.SetAge(i);
-				f>>c;p.SetGender((c=='m'?Male:Female));
-				f>>i;p.SetExperience(i);
-			}	
+			cout << "Exception";
+			throw 7;
+			}
+		
+			while(!f.eof())
+			{
+				string line;
+				f >> line;
+				if(line=="#player")
+				{
+					int i;
+					string s;
+					char c;
+					f>>s;p.SetName(s);
+					f>>s;p.SetRace(s);
+					f>>i;p.SetClass((Class)i);
+					f>>i;p.SetAge(i);
+					f>>c;p.SetGender((c=='m'?Male:Female));
+					f>>i;p.SetExperience(i);
+				}	
+			}
 		}
+		catch(...)
+		{cout<<"File is not found";}
+		
 		cout<<p.GetName()<<endl;
 		cout<<p.GetRace()<<endl;
 		cout<<p.GetClass()<<endl;
@@ -41,5 +56,6 @@ public:
 		cout<<"m"<<endl;
 		cout<<p.GetExperience()<<endl;
 	}
+	
 };
 #endif
