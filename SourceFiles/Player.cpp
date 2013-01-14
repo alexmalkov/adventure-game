@@ -57,37 +57,51 @@ Player::PrintSummary()
 }
 ////////////////////////////////////////////////////////////////////////////////
 void
-Player::AskInfo( Player & p)
+Player::AskInfo( Player & p) 
 {
-  ifstream f("ResourceFiles/playerdata.txt");
-  while ( !f.eof()  )
-  {
-    string line;
-    f >> line;
-    if ( line == "#player")
-    {
-      int iTmp;
-      string strTmp;
-      char g;
-      f >> strTmp; p.SetName(strTmp); 
-      f >> strTmp; p.SetRace(strTmp);
-      f >> iTmp; p.SetClass((Class)iTmp);
-      f >> iTmp; p.SetAge(iTmp);
-      f >> g; p.SetGender( (g == 'm' ? Male : Female) );
-      f >> iTmp; p.SetExperience(iTmp);
-    }
+	try
+	{
+		ifstream f("ResourceFiles/playerdata.txt");
+		if (!f)
+			{throw 0;}
+		  
+		  while ( !f.eof()  )
+		  {
+			string line;
+			f >> line;
+			if ( line == "#player")
+			{
+			
+			  int iTmp;
+			  string strTmp;
+			  char g;
+			  f >> strTmp; p.SetName(strTmp); 
+			  f >> strTmp; p.SetRace(strTmp); 
+			  f >> iTmp; p.SetClass((Class)iTmp); 
+			  
+			  f >> iTmp;
+			  if (iTmp < 1) throw 1; 
+			  p.SetAge(iTmp); 
+			  
+			  f >> g; p.SetGender( (g == 'm' ? Male : Female) ); 
+			  f >> iTmp; p.SetExperience(iTmp); 
+			  
+			}
+			/*
+		  cout << "\nPlease enter your details:\n\n";
+		  cout << "Your name:"; cin >> p.name;
+		  cout << "Race: "; cin >> p.race;
+		  int c;
+		  cout << "Class: ";cin >> c; p.myClass = (Class)c;
+		  cout << "age: "; cin >> p.age;
+		  char g;
+		  cout << "gender: "; cin >> g; p.gender = g == 'm' ? Male : Female;
+		  p.experience = 0;*/
+		  }
+	}
 
-    /*
-  cout << "\nPlease enter your details:\n\n";
-  cout << "Your name:"; cin >> p.name;
-  cout << "Race: "; cin >> p.race;
-  int c;
-  cout << "Class: ";cin >> c; p.myClass = (Class)c;
-  cout << "age: "; cin >> p.age;
-  char g;
-  cout << "gender: "; cin >> g; p.gender = g == 'm' ? Male : Female;
-  p.experience = 0;*/
-  }
+	catch(int ex) {cout << "Error number :" << ex << endl; }
+
 }
 ////////////////////////////////////////////////////////////////////////////////
 void 
