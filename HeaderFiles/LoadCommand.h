@@ -8,6 +8,7 @@
 #include "Command.h"
 #include "Game.h"
 
+// Load player data from a text file
 class LoadCommand : public Command
 {
 public:
@@ -20,13 +21,17 @@ public:
 		
 		try
 		{
+			// create stream
 			ifstream f("ResourceFiles/savedata.txt");
 			
+			// if the state of the stream is good for I/O operations
 			if(!f.good())
 			{
+			// throw an exception(break and go to catch)
 			throw 7;
 			}
 			fileFound=true;
+			// while it is not the end of file
 			while(!f.eof())
 			{
 				string line;
@@ -47,7 +52,7 @@ public:
 		}
 		catch(...)
 		{cout<<"Exception:File is not found"<<endl;}
-		
+		// output data if file is found
 		if(fileFound)
 		{
 		cout<<p.GetName()<<endl;
