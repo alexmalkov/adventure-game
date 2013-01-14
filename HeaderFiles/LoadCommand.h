@@ -16,7 +16,7 @@ public:
 	{
 		Game *g = GetGame();
 		Player p = g->GetPlayer();
-		
+		bool fileFound;
 		
 		try
 		{
@@ -24,10 +24,9 @@ public:
 			
 			if(!f.good())
 			{
-			cout << "Exception";
 			throw 7;
 			}
-		
+			fileFound=true;
 			while(!f.eof())
 			{
 				string line;
@@ -47,14 +46,17 @@ public:
 			}
 		}
 		catch(...)
-		{cout<<"File is not found";}
+		{cout<<"Exception:File is not found"<<endl;}
 		
+		if(fileFound)
+		{
 		cout<<p.GetName()<<endl;
 		cout<<p.GetRace()<<endl;
 		cout<<p.GetClass()<<endl;
 		cout<<p.GetAge()<<endl;
 		cout<<"m"<<endl;
 		cout<<p.GetExperience()<<endl;
+		}
 	}
 	
 };

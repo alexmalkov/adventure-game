@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-Egor Danchenkov
-Alex
-=======
-Egor
-Alex Malkov
->>>>>>> 433241f53c425a246c6052a1a1a674c8eb309bb3
