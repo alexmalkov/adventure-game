@@ -1,8 +1,7 @@
- ////////////////////
-/// C++ Object-oriented Programming
-/// Adventure Game 6
-/// Reference answer 
-/// anssi.grohn@pkamk.fi
+////////////////////
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
 ////////////////////
 #include "Game.h"
 #include "Player.h"
@@ -73,36 +72,38 @@ void Game::Play()
   ostringstream s;
   s << "by " << DEV_NAME << "(c) " << YEAR << ". Licensed under GPLv3.\n";
   renderer->Render(s.str());
+  
   Player::AskInfo(player);
   renderer->Render("\nPlayer statistics:\n\n");
   player.PrintSummary();
   renderer->Render("\nAnd behold, the adventure begins!\n");
   
   player.SetGame(this);
-  
+
   srand(time(NULL));
   while(running)
   {
-    renderer->Render(GetCurrentRoom()->GetDescription());
-    renderer->Render("\n> ");
+	renderer->Render(GetCurrentRoom()->GetDescription());
+	renderer->Render("\n> ");
 
-    getline(cin,cmd);
+	getline(cin,cmd);
 
-    CommandFactory comm(this);
-    ICommand *pCommand = comm.Create( cmd ); 
-    if ( pCommand ) pCommand->Execute();
-    delete pCommand;
+	CommandFactory comm(this);
+	ICommand *pCommand = comm.Create( cmd ); 
+	if ( pCommand ) pCommand->Execute();
+	delete pCommand;
 
-    GetCurrentRoom()->Update();
-      
-    if ( player.GetHitpoints() <= 0 ) {
-      
-      renderer->Render("You're dead. Game over.\n");
-      running = false;
-    }
+	GetCurrentRoom()->Update();
+	  
+	if ( player.GetHitpoints() <= 0 ) {
+	  
+	  renderer->Render("You're dead. Game over.\n");
+	  running = false;
+		}
   }
-  // final message to player
-  renderer->Render("Exiting, bye!\n");
+	// final message to player
+	renderer->Render("Exiting, bye!\n");
+	
 }
 ////////////////////////////////////////////////////////////////////////////////
 void
