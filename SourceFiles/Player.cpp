@@ -54,6 +54,7 @@ Player::PrintSummary()
   cout << "age: " << GetAge() << "\n";
   cout << "gender: " << GetGender() << "\n";
   cout << "experience: " << GetExperience() << "\n";
+  cout << "gold amount: " << GetGoldAmount()<< "\n";
 }
 ////////////////////////////////////////////////////////////////////////////////
 void
@@ -85,6 +86,7 @@ Player::AskInfo( Player & p)
 			  
 			  f >> g; p.SetGender( (g == 'm' ? Male : Female) ); 
 			  f >> iTmp; p.SetExperience(iTmp); 
+			  f>>iTmp;p.SetGoldAmount(iTmp);
 			  
 			}
 			/*
@@ -110,3 +112,11 @@ Player::SetGame( Game * game )
   this->game = game;
 }
 ////////////////////////////////////////////////////////////////////////////////
+void Player::SetGoldAmount(int ga)
+{
+	goldAmount = ga;
+}
+int Player::GetGoldAmount()
+{
+	return goldAmount;
+}

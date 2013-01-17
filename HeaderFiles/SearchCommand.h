@@ -21,11 +21,19 @@ public:
   {
     if ( rand()%1000 < 436 )
     {
-      GoldFactory f;
+	  Game *game = GetGame();
+	  Player & p = game->GetPlayer();
+     
+	  GoldFactory f;
       Gold *g = f.Create( 1+rand()%100 );
       std::ostringstream s;
       s << "You found " << g->GetAmount() << " gold!\n";
-      GetGame()->GetRenderer()->Render(s.str());
+	  p.SetGoldAmount(p.GetGoldAmount()+g->GetAmount());
+      
+	  
+	  GetGame()->GetRenderer()->Render(s.str());
+	  cout<<p.GetGoldAmount();
+	  
       delete g;
     }
     else {
