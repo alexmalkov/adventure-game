@@ -1,8 +1,7 @@
 ////////////////////
-/// C++ Object-oriented Programming
-/// Adventure Game 6
-/// Reference answer 
-/// anssi.grohn@pkamk.fi
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
 ////////////////////
 #ifndef __SearchCommand_h__
 #define __SearchCommand_h__
@@ -27,12 +26,15 @@ public:
 	  GoldFactory f;
       Gold *g = f.Create( 1+rand()%100 );
       std::ostringstream s;
-      s << "You found " << g->GetAmount() << " gold!\n";
-	  p.SetGoldAmount(p.GetGoldAmount()+g->GetAmount());
       
-	  
+    
+      p.SetGoldAmount(p.GetGoldAmount()+g->GetAmount());
+      
+      s << "You found " << g->GetAmount() << " gold!\nTotal: " << p.GetGoldAmount() << endl;
+	 
+      	  
 	  GetGame()->GetRenderer()->Render(s.str());
-	  cout<<p.GetGoldAmount();
+	   
 	  
       delete g;
     }

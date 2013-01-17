@@ -20,7 +20,7 @@ public:
 	void Execute()
 	{
 	Game *g = GetGame();
-	Player p = g->GetPlayer();
+	Player & p = g->GetPlayer();
 	// create stream
 	ofstream f;
 	// create and start using file
@@ -31,8 +31,12 @@ public:
 	f<< p.GetRace()<<endl;
 	f<< p.GetClass()<<endl;
 	f<< p.GetAge()<<endl;
-	f<<'m'<<endl;
+	
+	//f<<'m'<<endl; //Hard code???
+	
+	f<<p.GetGender();
 	f<< p.GetExperience();
+	f<< p.GetGoldAmount();
 	// close the stream
 	f.close();
 	}

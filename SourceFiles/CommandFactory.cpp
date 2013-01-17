@@ -1,5 +1,4 @@
 ////////////////////
-////////////////////
 /// Advanced C++
 /// Adventure Game 2 
 /// Malkov/Danchenkov

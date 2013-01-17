@@ -1,3 +1,8 @@
+////////////////////
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
+////////////////////
 #ifndef __Chambers_h__
 #define __Chambers_h__
 #include "Room.h"

@@ -1,8 +1,8 @@
 ////////////////////
-/// C++ Object-oriented Programming
-/// Adventure Game 6
-/// Reference answer 
-/// anssi.grohn@pkamk.fi
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
+////////////////////
 #ifndef __Dungeon_h__
 #define __Dungeon_h__
 #include "Room.h"

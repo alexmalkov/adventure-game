@@ -1,3 +1,8 @@
+////////////////////
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
+////////////////////
 #include "AttackCommand.h"
 #include "Game.h"
 #include "Room.h"

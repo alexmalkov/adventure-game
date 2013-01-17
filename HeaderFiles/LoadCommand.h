@@ -7,6 +7,7 @@
 #define LOADCOMMAND_H
 #include "Command.h"
 #include "Game.h"
+#include <fstream>
 
 // Load player data from a text file
 class LoadCommand : public Command
@@ -16,7 +17,7 @@ public:
 	void Execute()
 	{
 		Game *g = GetGame();
-		Player p = g->GetPlayer();
+		Player & p = g->GetPlayer();
 		bool fileFound;
 		
 		try
@@ -47,6 +48,7 @@ public:
 					f>>i;p.SetAge(i);
 					f>>c;p.SetGender((c=='m'?Male:Female));
 					f>>i;p.SetExperience(i);
+					f>>i;p.SetGoldAmount(i);
 				}	
 			}
 		}
@@ -55,12 +57,12 @@ public:
 		// output data if file is found
 		if(fileFound)
 		{
-		cout<<p.GetName()<<endl;
-		cout<<p.GetRace()<<endl;
-		cout<<p.GetClass()<<endl;
-		cout<<p.GetAge()<<endl;
-		cout<<"m"<<endl;
-		cout<<p.GetExperience()<<endl;
+			cout<<p.GetName()<<endl;
+			cout<<p.GetRace()<<endl;
+			cout<<p.GetClass()<<endl;
+			cout<<p.GetAge()<<endl;
+			cout<<p.GetGender()<<endl; //replace hard code
+			cout<<p.GetExperience()<<endl;
 		}
 	}
 	

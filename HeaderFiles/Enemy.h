@@ -1,8 +1,8 @@
 ////////////////////
-/// C++ Object-oriented Programming
-/// Adventure Game 6
-/// Reference answer 
-/// anssi.grohn@pkamk.fi
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
+////////////////////
 #ifndef __Enemy_h__
 #define __Enemy_h__
 #include "GameObject.h"
