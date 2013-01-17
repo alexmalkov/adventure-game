@@ -12,7 +12,7 @@
 #include <fstream>
 
 using namespace std;
-
+// creates a file and saves player data into it
 class SaveCommand : public Command
 {
 public:
@@ -21,9 +21,11 @@ public:
 	{
 	Game *g = GetGame();
 	Player p = g->GetPlayer();
-	
+	// create stream
 	ofstream f;
+	// create and start using file
 	f.open("ResourceFiles/savedata.txt");
+	// wtite data to the file
 	f<<"#player"<<endl;
 	f<< p.GetName()<<endl;
 	f<< p.GetRace()<<endl;
@@ -31,6 +33,7 @@ public:
 	f<< p.GetAge()<<endl;
 	f<<'m'<<endl;
 	f<< p.GetExperience();
+	// close the stream
 	f.close();
 	}
 };

@@ -1,8 +1,7 @@
 ////////////////////
-/// C++ Object-oriented Programming
-/// Adventure Game 6
-/// Reference answer 
-/// anssi.grohn@pkamk.fi
+/// Advanced C++
+/// Adventure Game 2 
+/// Malkov/Danchenkov
 ////////////////////
 #include "Player.h"
 #include "Game.h"
@@ -54,7 +53,11 @@ Player::PrintSummary()
   cout << "age: " << GetAge() << "\n";
   cout << "gender: " << GetGender() << "\n";
   cout << "experience: " << GetExperience() << "\n";
+<<<<<<< HEAD
   cout << "gold amount: " << GetGoldAmount()<< "\n";
+=======
+
+>>>>>>> 3dc2bc08cafc3f8a821f81f8d721218f77833ea0
 }
 ////////////////////////////////////////////////////////////////////////////////
 void
@@ -63,7 +66,7 @@ Player::AskInfo( Player & p)
 	try
 	{
 		ifstream f("ResourceFiles/playerdata.txt");
-		if (!f)
+		if (!f.good()) //check if stream is good.
 			{throw 0;}
 		  
 		  while ( !f.eof()  )
@@ -101,9 +104,9 @@ Player::AskInfo( Player & p)
 		  p.experience = 0;*/
 		  }
 	}
-
-	catch(int ex) {cout << "Error number :" << ex << endl; }
-
+	
+	//print message for all errors
+	catch(...) {cout << " File is missing/n" << "Error number :" << endl;}
 }
 ////////////////////////////////////////////////////////////////////////////////
 void 
