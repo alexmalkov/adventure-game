@@ -18,6 +18,7 @@ public:
   virtual ~Gold();
   unsigned int GetAmount() const;
   void SetAmount( unsigned int value );
+  
 };
 ////////////////////////////////////////////////////////////////////////////////
 #endif

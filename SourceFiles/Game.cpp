@@ -95,15 +95,21 @@ void Game::Play()
 
 	GetCurrentRoom()->Update();
 	  
-	if ( player.GetHitpoints() <= 0 ) {
+	if ( player.GetHitpoints() <= 0  ) {
 	  
 	  renderer->Render("You're dead. Game over.\n");
 	  running = false;
 		}
   }
 	// final message to player
-	renderer->Render("Exiting, bye!\n");
+	// should do something with it
 	
+	renderer->Render("Exiting, bye!\nPress any key");
+	
+	//
+	string in;	
+	
+	cin >> in;
 }
 ////////////////////////////////////////////////////////////////////////////////
 void

@@ -7,6 +7,7 @@
 #define __Player_h__
 #include <string>
 #include "GameObject.h"
+#include "Robbers.h"
 class Game;
 ////////////////////////////////////////////////////////////////////////////////
 class Player : public GameObject
@@ -22,6 +23,10 @@ public:
   void Attack( GameObject *pObject);
   void SetGoldAmount(int ga);
   int GetGoldAmount();
+  
+  Player & operator+ (int value);
+  Player & operator- (Robbers & pRob);
+  
 
   void PrintSummary();
   static void AskInfo( Player & p );

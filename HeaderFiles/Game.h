@@ -12,6 +12,7 @@ class Room;
 enum RoomId { kDungeon, kHallway, kMonster, kChambers, kNumRooms };
 #include "Player.h"
 #include "Enemy.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 class Game 
 {

@@ -5,6 +5,7 @@
 ////////////////////
 #include "Player.h"
 #include "Game.h"
+#include "Robbers.h"
 #include "IRenderer.h"
 #include <cstdlib>
 #include <sstream>
@@ -118,4 +119,18 @@ void Player::SetGoldAmount(int ga)
 int Player::GetGoldAmount()
 {
 	return goldAmount;
+}
+
+Player & 
+Player :: operator+ (int value)
+{
+	SetGoldAmount(goldAmount + value);
+	return *this;
+}
+
+Player &
+Player :: operator- (Robbers & pRob)
+{
+	SetGoldAmount(goldAmount - pRob.GetStealAmount());
+	return *this;
 }

@@ -12,7 +12,7 @@ class Gold;
 class GoldFactory
 {
 public:
-  Gold * Create( size_t amount);
+  Gold * Create( size_t amount); 
 };
 ////////////////////////////////////////////////////////////////////////////////
 #endif

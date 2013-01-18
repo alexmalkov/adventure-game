@@ -19,7 +19,7 @@ public:
 	Game *g = GetGame();
 	Player p = g->GetPlayer();
 	
-	cout<< p.GetGoldAmount() << "gold" <<endl;
+	cout<< p.GetGoldAmount() << " gold" <<endl;
 	}
 }; 
 #endif
