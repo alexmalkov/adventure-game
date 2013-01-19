@@ -57,13 +57,13 @@ public:
 		// output data if file is found
 		if(fileFound)
 		{
-			cout<<p.GetName()<<endl;
-			cout<<p.GetRace()<<endl;
-			cout<<p.GetClass()<<endl;
-			cout<<p.GetAge()<<endl;
-			cout<<p.GetGender()<<endl; //replace hard code
-			cout<<p.GetExperience()<<endl;
-			cout<<p.GetGoldAmount() << endl;
+			cout<<"Name: "<<p.GetName()<<endl;
+			cout<<"Race: "<<p.GetRace()<<endl;
+			cout<<"Class: "<<p.GetClass()<<endl;
+			cout<<"Age: "<<p.GetAge()<<endl;
+			cout<<"Gender: "<<p.GetGender()<<endl; //replace hard code
+			cout<<"Experience "<<p.GetExperience()<<endl;
+			cout<<"Gold amount: "<<p.GetGoldAmount() << endl;
 		}
 	}
 	

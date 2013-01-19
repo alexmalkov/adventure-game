@@ -25,9 +25,6 @@ public:
 	  
     if ( rand()%1000 < 800 )
     {
-	  	  
-
-     
 	  GoldFactory f;
       Gold *g = f.Create( 1+rand()%10 );
       std::ostringstream s;
