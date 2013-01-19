@@ -23,7 +23,7 @@ public:
 	Game *game = GetGame();
 	Player & p = game->GetPlayer();      
 	  
-    if ( rand()%10 < 8 )
+    if ( rand()%1000 < 800 )
     {
 	  	  
 

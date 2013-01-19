@@ -63,6 +63,7 @@ public:
 			cout<<p.GetAge()<<endl;
 			cout<<p.GetGender()<<endl; //replace hard code
 			cout<<p.GetExperience()<<endl;
+			cout<<p.GetGoldAmount() << endl;
 		}
 	}
 	

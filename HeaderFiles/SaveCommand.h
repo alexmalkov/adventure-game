@@ -27,10 +27,10 @@ public:
 	// temporary stuff
 	// remove savedata.txt if exists to check if it matters for
 	// writing wrong goldAmount into file
-	if( remove( "ResourceFiles/savedata.txt" ) != 0 )
-    {perror( "Error deleting file" );}
-	else
-    {puts( "File successfully deleted" );}
+	//if( remove( "ResourceFiles/savedata.txt" ) != 0 )
+   // {perror( "Error deleting file" );}
+	//else
+  //  {puts( "File successfully deleted" );}
   
 	// create and start using file
 	f.open("ResourceFiles/savedata.txt");
@@ -47,9 +47,9 @@ public:
 	// since it was clear from other stuff how to use getters and
 	// write data into file. Now we don't have gender displayed at all.
 	
-	f<<p.GetGender();
-	f<< p.GetExperience();
-	f<< p.GetGoldAmount();
+	f<< p.GetGender() << endl;
+	f<< p.GetExperience() << endl;
+	f<< p.GetGoldAmount() << endl;
 	// close the stream
 	f.close();
 	}
