@@ -3,8 +3,8 @@
 /// Adventure Game 2 
 /// Malkov/Danchenkov
 ////////////////////
-#ifndef LOADCOMMAND_H
-#define LOADCOMMAND_H
+#ifndef __LoadCommand_h__
+#define __LoadCommand_h__
 #include "Command.h"
 #include "Game.h"
 #include <fstream>

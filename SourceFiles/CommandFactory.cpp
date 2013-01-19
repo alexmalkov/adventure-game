@@ -12,6 +12,7 @@
 #include "SaveCommand.h"
 #include "LoadCommand.h"
 #include "ShowGoldCommand.h"
+#include "HelpCommand.h"
 #include "Game.h"
 #include <sstream>
 #include <string>
@@ -25,8 +26,12 @@ CommandFactory::Create( const std::string & str )
   std::istringstream s(str);
   std::string word;
   s >> word;
-
-  if(word=="showgold")
+  
+  if(word == "help")
+  {
+	return new HelpCommand(m_pGame);
+  }
+  if(word == "showgold")
   {
 	return new ShowGoldCommand(m_pGame);
   }

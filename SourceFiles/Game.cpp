@@ -77,6 +77,7 @@ void Game::Play()
   renderer->Render("\nPlayer statistics:\n\n");
   player.PrintSummary();
   renderer->Render("\nAnd behold, the adventure begins!\n");
+  renderer->Render("Print 'help' to see the list of commands.\n");
   
   player.SetGame(this);
 
@@ -101,15 +102,9 @@ void Game::Play()
 	  running = false;
 		}
   }
-	// final message to player
-	// should do something with it
-	
 	renderer->Render("Exiting, bye!\nPress any key");
 	
-	//
-	string in;	
-	
-	cin >> in;
+	cin.get();
 }
 ////////////////////////////////////////////////////////////////////////////////
 void

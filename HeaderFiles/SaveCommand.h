@@ -3,8 +3,8 @@
 /// Adventure Game 2 
 /// Malkov/Danchenkov
 ////////////////////
-#ifndef SAVECOMMAND_H
-#define SAVECOMMAND_H
+#ifndef __SaveCommand_h__
+#define __SaveCommand_h__
 #include "Command.h"
 #include "Game.h"
 #include <sstream>
@@ -23,6 +23,15 @@ public:
 	Player & p = g->GetPlayer();
 	// create stream
 	ofstream f;
+	
+	// temporary stuff
+	// remove savedata.txt if exists to check if it matters for
+	// writing wrong goldAmount into file
+	if( remove( "ResourceFiles/savedata.txt" ) != 0 )
+    {perror( "Error deleting file" );}
+	else
+    {puts( "File successfully deleted" );}
+  
 	// create and start using file
 	f.open("ResourceFiles/savedata.txt");
 	// wtite data to the file
@@ -32,7 +41,11 @@ public:
 	f<< p.GetClass()<<endl;
 	f<< p.GetAge()<<endl;
 	
-	//f<<'m'<<endl; //Hard code???
+	//f<<'m'<<endl; //Hard code??? - Yeah, could not handle it fast,
+	// but wanted to see gender as a word..
+	// That looked better than 0 and didn't spoil anything
+	// since it was clear from other stuff how to use getters and
+	// write data into file. Now we don't have gender displayed at all.
 	
 	f<<p.GetGender();
 	f<< p.GetExperience();
