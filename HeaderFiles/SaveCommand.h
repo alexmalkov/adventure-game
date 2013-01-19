@@ -23,15 +23,6 @@ public:
 	Player & p = g->GetPlayer();
 	// create stream
 	ofstream f;
-	
-	// temporary stuff
-	// remove savedata.txt if exists to check if it matters for
-	// writing wrong goldAmount into file
-	//if( remove( "ResourceFiles/savedata.txt" ) != 0 )
-   // {perror( "Error deleting file" );}
-	//else
-  //  {puts( "File successfully deleted" );}
-  
 	// create and start using file
 	f.open("ResourceFiles/savedata.txt");
 	// wtite data to the file
