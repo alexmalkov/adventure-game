@@ -120,6 +120,14 @@ int Player::GetGoldAmount()
 {
 	return goldAmount;
 }
+void Player::SetSilverAmount(int sa)
+{
+	silverAmount = sa;
+}
+int Player::GetSilverAmount()
+{
+	return silverAmount;
+}
 
 Player & 
 Player :: operator+ (int value)

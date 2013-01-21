@@ -7,7 +7,9 @@
 #define __SearchCommand_h__
 #include <cstdlib>
 #include "GoldFactory.h"
+#include "SilverFactory.h"
 #include "Gold.h"
+#include "Silver.h"
 #include "Game.h"
 #include <sstream>
 #include "IRenderer.h"
@@ -17,38 +19,55 @@ class SearchCommand : public Command
 public: 
   SearchCommand( Game *pGame ) : Command(pGame) {}
   
+  template <typename Money>
+	  Player & sum(Player p, Money m)
+	  {
+		return p+m->GetAmount();		
+	  }
+  
   void Execute() 
   { 
 	  
 	Game *game = GetGame();
-	Player & p = game->GetPlayer();      
+	Player & p = game->GetPlayer(); 
+ 
 	  
     if ( rand()%1000 < 800 )
     {
-	  GoldFactory f;
-      Gold *g = f.Create( 1+rand()%10 );
-      std::ostringstream s;
-      
-      int GoldFromFactory;
-      GoldFromFactory = g->GetAmount();
-      
-      p + GoldFromFactory; // operator + is overloaded
-      
-      s << "You found " << g->GetAmount() << " gold!\nTotal: " << p.GetGoldAmount() << endl;
-	 
+		std::ostringstream s;
+		
+		if (rand()%1000<500)
+		{
+			GoldFactory f;
+			Gold *g = f.Create( 1+rand()%10 );
+			sum(p,g);  
+			int GoldFromFactory;
+			GoldFromFactory = g->GetAmount();
+			s << "You found " << g->GetAmount() << " gold!\nTotal: " << p.GetGoldAmount() << endl;
+			delete g;
+		}
+		else
+		{
+		  SilverFactory sf;
+		  Silver *sil = sf.Create( 1+rand()%50 );
+		  sum(p,sil);
+		  int SilverFromFactory;
+		  SilverFromFactory = sil->GetAmount();
+		   s << "You found " << sil->GetAmount() << " silver!\nTotal: " << p.GetSilverAmount() << endl;
+			delete sil;
+		}
       	  
-	  GetGame()->GetRenderer()->Render(s.str());
-	   
+	  GetGame()->GetRenderer()->Render(s.str());   
 	  
-      delete g;
+     
     }
     else {
 			
 		 std::ostringstream s;
 		  //Generate random number
 		  //range between 1-30 
-		 int steelPower = rand()%20 + 1;
-		 Robbers pRob(steelPower );
+		 int stealPower = rand()%20 + 1;
+		 Robbers pRob(stealPower );
 		  
 		 p - pRob;
 		 
@@ -61,7 +80,7 @@ public:
 		 {
 			s << "You have met a very cruel and greedy bandits\n" 
 			<< "They were about to kill you, but you paid for your life\n" 
-			<< "It cost you: " << steelPower << " gold(s)" << endl;
+			<< "It cost you: " << stealPower << " gold(s)" << endl;
 		 }  
 		 else
 		 {  	

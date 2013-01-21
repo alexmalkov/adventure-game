@@ -15,6 +15,7 @@ class Player : public GameObject
 private:
   Game *game;
   int goldAmount;
+  int silverAmount;
 public:
   Player();
 
@@ -23,6 +24,8 @@ public:
   void Attack( GameObject *pObject);
   void SetGoldAmount(int ga);
   int GetGoldAmount();
+  void SetSilverAmount(int sa);
+  int GetSilverAmount();
   
   Player & operator+ (int value);
   Player & operator- (Robbers & pRob);

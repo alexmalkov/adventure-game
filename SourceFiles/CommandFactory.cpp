@@ -12,6 +12,7 @@
 #include "SaveCommand.h"
 #include "LoadCommand.h"
 #include "ShowGoldCommand.h"
+#include "SilverFactory.h"
 #include "HelpCommand.h"
 #include "Game.h"
 #include <sstream>
