@@ -13,17 +13,18 @@
 #include "Game.h"
 #include <sstream>
 #include "IRenderer.h"
+#include <typeinfo> 
 ////////////////////////////////////////////////////////////////////////////////
 class SearchCommand : public Command
 {
 public: 
   SearchCommand( Game *pGame ) : Command(pGame) {}
   
-  template <typename Money>
-	  Player & sum(Player p, Money m)
-	  {
-		return p+m->GetAmount();		
-	  }
+  // template <typename T>
+	 //  void sum(Player& p, T m)
+	 //  {
+		// p + m->GetAmount();		
+	 //  }
   
   void Execute() 
   { 
@@ -31,30 +32,35 @@ public:
 	Game *game = GetGame();
 	Player & p = game->GetPlayer(); 
  
-	  
+	//80% that you get money instead of being robbed
     if ( rand()%1000 < 800 )
     {
 		std::ostringstream s;
-		
-		if (rand()%1000<500)
+
+		//90% that you get siver 
+		if (rand()%1000<900)
+		{
+
+		   SilverFactory sf;
+		   Silver *sil = sf.Create( 1+rand()%50 );
+		   int SilverFromFactory;
+		   SilverFromFactory = sil->GetAmount();
+
+
+		    p.SetSilverAmount(p.GetSilverAmount() + SilverFromFactory);
+		    s << "You found " << SilverFromFactory << " silver!\nTotal: " << p.GetSilverAmount() << endl;
+
+		    delete sil;
+		}
+		else
 		{
 			GoldFactory f;
 			Gold *g = f.Create( 1+rand()%10 );
-			sum(p,g);  
+			p + g->GetAmount();  
 			int GoldFromFactory;
 			GoldFromFactory = g->GetAmount();
 			s << "You found " << g->GetAmount() << " gold!\nTotal: " << p.GetGoldAmount() << endl;
 			delete g;
-		}
-		else
-		{
-		  SilverFactory sf;
-		  Silver *sil = sf.Create( 1+rand()%50 );
-		  sum(p,sil);
-		  int SilverFromFactory;
-		  SilverFromFactory = sil->GetAmount();
-		   s << "You found " << sil->GetAmount() << " silver!\nTotal: " << p.GetSilverAmount() << endl;
-			delete sil;
 		}
       	  
 	  GetGame()->GetRenderer()->Render(s.str());   
@@ -75,7 +81,7 @@ public:
 		 //want to implement option when just nothing happens 
 		 // e.g. 80% - find gold 10% - robbers and 10% - nothing
 		 // + if you were killed you can start a new game by click 
-		 // certain option
+		 // a certain option
      	 if (p.GetGoldAmount() >= 0)
 		 {
 			s << "You have met a very cruel and greedy bandits\n" 

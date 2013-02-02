@@ -1,11 +1,11 @@
-del Game.exe GameUsing_DLL.exe Engine.dll
+rm Game.exe GameUsing_DLL.exe Engine.dll
 cd bin
-del libEngine.a
-del Engine.dll
+rm libEngine.a
+rm Engine.dll
 cd ../SourceFiles
-del CommandFactory.o Game.o GameObject.o Gold.o GoldFactory.o MoveCommand.o Player.o Room.o adventure.o AttackCommand.o Silver.o SilverFactory.o Engine.a
+rm CommandFactory.o Game.o GameObject.o Gold.o GoldFactory.o MoveCommand.o Player.o Room.o adventure.o AttackCommand.o Silver.o SilverFactory.o Engine.a
 cd ../ResourceFiles
-del savedata.txt
+rm savedata.txt
 
 cd ../SourceFiles
 g++ -c adventure.cpp AttackCommand.cpp Game.cpp Gold.cpp GoldFactory.cpp Player.cpp GameObject.cpp CommandFactory.cpp MoveCommand.cpp Room.cpp Silver.cpp SilverFactory.cpp -I ../HeaderFiles
@@ -13,9 +13,9 @@ g++ -c adventure.cpp AttackCommand.cpp Game.cpp Gold.cpp GoldFactory.cpp Player.
 ar rcs ../bin/libEngine.a AttackCommand.o Gold.o GoldFactory.o GameObject.o CommandFactory.o MoveCommand.o Room.o SilverFactory.o Silver.o
 
 
-g++ adventure.o game.o player.o -L ../bin -lEngine -o ../Game.exe
+g++ adventure.o Game.o Player.o -L ../bin -lEngine -o ../Game.out
 
 cd ../
 
-Game.exe
-pause
+./Game.out
+

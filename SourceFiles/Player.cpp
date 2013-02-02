@@ -55,6 +55,7 @@ Player::PrintSummary()
   cout << "gender: " << GetGender() << "\n";
   cout << "experience: " << GetExperience() << "\n";
   cout << "gold amount: " << GetGoldAmount()<< "\n";
+  cout << "silver amount" << GetSilverAmount() << "\n";
 }
 ////////////////////////////////////////////////////////////////////////////////
 void
@@ -87,7 +88,7 @@ Player::AskInfo( Player & p)
 			  f >> g; p.SetGender( (g == 'm' ? Male : Female) ); 
 			  f >> iTmp; p.SetExperience(iTmp); 
 			  f>>iTmp;p.SetGoldAmount(iTmp);
-			  
+			  f>>iTmp;p.SetSilverAmount(iTmp);
 			}
 			/*
 		  cout << "\nPlease enter your details:\n\n";

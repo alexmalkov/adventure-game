@@ -41,6 +41,7 @@ public:
 	f<< p.GetGender() << endl;
 	f<< p.GetExperience() << endl;
 	f<< p.GetGoldAmount() << endl;
+	f<< p.GetSilverAmount() << endl;
 	// close the stream
 	f.close();
 	}

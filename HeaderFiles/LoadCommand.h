@@ -49,6 +49,7 @@ public:
 					f>>c;p.SetGender((c=='m'?Male:Female));
 					f>>i;p.SetExperience(i);
 					f>>i;p.SetGoldAmount(i);
+					f>>i;p.SetSilverAmount(i);
 				}	
 			}
 		}
@@ -64,6 +65,7 @@ public:
 			cout<<"Gender: "<<p.GetGender()<<endl; //replace hard code
 			cout<<"Experience "<<p.GetExperience()<<endl;
 			cout<<"Gold amount: "<<p.GetGoldAmount() << endl;
+			cout<<"Siver amount: "<<p.GetSilverAmount() << endl;
 		}
 	}
 	
