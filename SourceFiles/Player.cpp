@@ -55,7 +55,7 @@ Player::PrintSummary()
   cout << "gender: " << GetGender() << "\n";
   cout << "experience: " << GetExperience() << "\n";
   cout << "gold amount: " << GetGoldAmount()<< "\n";
-  cout << "silver amount" << GetSilverAmount() << "\n";
+  cout << "silver amount: " << GetSilverAmount() << "\n";
 }
 ////////////////////////////////////////////////////////////////////////////////
 void

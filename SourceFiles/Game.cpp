@@ -18,6 +18,7 @@
 #include "Dungeon.h"
 #include "Hallway.h"
 #include "MonsterRoom.h"
+#include "DarkForest.h"
 #include "Chambers.h"
 #include "globals.h"
 #include <time.h>
@@ -35,6 +36,9 @@ Game::Game() : running(true)
   rooms[kDungeon] = new Dungeon();
   rooms[kDungeon]->SetGame(this);
 
+  rooms[kDF] = new DarkForest();
+  rooms[kDF]->SetGame(this);
+
   rooms[kHallway] = new Hallway();
   rooms[kHallway]->SetGame(this);
 
@@ -44,13 +48,20 @@ Game::Game() : running(true)
   rooms[kChambers] = new Chambers();
   rooms[kChambers]->SetGame(this);
 
+
+
   rooms[kDungeon]->SetNextRoom(North,rooms[kHallway]);
 
   rooms[kHallway]->SetNextRoom(South,rooms[kDungeon]);
   rooms[kHallway]->SetNextRoom(North,rooms[kMonster]);
+  rooms[kHallway]->SetNextRoom(West, rooms[kDF]);
+
+  rooms[kDF]->SetNextRoom(East, rooms[kHallway]);
 
   rooms[kMonster]->SetNextRoom(South,rooms[kHallway]);
   rooms[kMonster]->SetNextRoom(North,rooms[kChambers]);
+
+  
 
   rooms[kChambers]->SetNextRoom(South,rooms[kMonster]);
   

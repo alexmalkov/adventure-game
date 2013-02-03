@@ -63,7 +63,7 @@ public:
       // Change room description a bit
       if ( e.IsAlive() == false )
       {
-	SetDescription("You are in the monster room. There is a pretty dead orc here.");
+	       SetDescription("You are in the monster room. There is a pretty dead orc here.");
       }
     } 
     else 

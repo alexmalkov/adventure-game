@@ -9,7 +9,7 @@
 class IRenderer;
 class Room;
 ////////////////////////////////////////////////////////////////////////////////
-enum RoomId { kDungeon, kHallway, kMonster, kChambers, kNumRooms };
+enum RoomId { kDungeon, kHallway, kMonster, kChambers, kDF, kNumRooms};
 #include "Player.h"
 #include "Enemy.h"
 
