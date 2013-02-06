@@ -12,6 +12,8 @@
 #include "SaveCommand.h"
 #include "LoadCommand.h"
 #include "ShowGoldCommand.h"
+#include "ShowSilverCommand.h"
+#include "ShowMapCommand.h"
 #include "SilverFactory.h"
 #include "HelpCommand.h"
 #include "Game.h"
@@ -28,13 +30,25 @@ CommandFactory::Create( const std::string & str )
   std::string word;
   s >> word;
   
+  
   if(word == "help")
   {
 	return new HelpCommand(m_pGame);
   }
+  
   if(word == "showgold")
   {
 	return new ShowGoldCommand(m_pGame);
+  }
+  
+  if(word == "map")
+  {
+	return new ShowMapCommand(m_pGame);
+  }
+  
+  if(word == "showsilver")
+  {
+	return new ShowSilverCommand(m_pGame);
   }
   
   if (word == "save")

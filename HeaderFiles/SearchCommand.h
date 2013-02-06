@@ -37,8 +37,8 @@ public:
     {
 		std::ostringstream s;
 
-		//90% that you get siver 
-		if (rand()%1000<900)
+		//60% that you get siver 
+		if (rand()%1000<600)
 		{
 
 		   SilverFactory sf;
@@ -48,7 +48,7 @@ public:
 
 
 		    p.SetSilverAmount(p.GetSilverAmount() + SilverFromFactory);
-		    s << "You found " << SilverFromFactory << " silver!\nTotal: " << p.GetSilverAmount() << endl;
+		    s << "You found " << SilverFromFactory << " silver!\nTotal silver: " << p.GetSilverAmount() << endl;
 
 		    delete sil;
 		}
@@ -59,7 +59,7 @@ public:
 			p + g->GetAmount();  
 			int GoldFromFactory;
 			GoldFromFactory = g->GetAmount();
-			s << "You found " << g->GetAmount() << " gold!\nTotal: " << p.GetGoldAmount() << endl;
+			s << "You found " << g->GetAmount() << " gold!\nTotal gold: " << p.GetGoldAmount() << endl;
 			delete g;
 		}
       	  
