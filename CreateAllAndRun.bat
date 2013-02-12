@@ -8,9 +8,9 @@ cd ../ResourceFiles
 del savedata.txt
 
 cd ../SourceFiles
-g++ -c adventure.cpp AttackCommand.cpp Game.cpp Gold.cpp GoldFactory.cpp Player.cpp GameObject.cpp CommandFactory.cpp MoveCommand.cpp Silver.cpp Room.cpp -I ../HeaderFiles
+g++ -c adventure.cpp AttackCommand.cpp Game.cpp Gold.cpp GoldFactory.cpp Player.cpp GameObject.cpp CommandFactory.cpp MoveCommand.cpp Silver.cpp SilverFactory.cpp Room.cpp -I ../HeaderFiles
 
-ar rcs ../bin/libEngine.a AttackCommand.o Gold.o GoldFactory.o GameObject.o CommandFactory.o MoveCommand.o Room.o
+ar rcs ../bin/libEngine.a AttackCommand.o Gold.o GoldFactory.o GameObject.o CommandFactory.o MoveCommand.o Room.o Silver.o SilverFactory.o
 
 
 g++ adventure.o game.o player.o -L ../bin -lEngine -o ../Game.exe

@@ -21,6 +21,9 @@ public:
 	<<"attack\n"
 	<<"save\n"
 	<<"load\n"
+	<<"showgold\n"
+	<<"showsilver\n"
+	<<"map\n"
 	<<"quit\n\n";
 	GetGame()->GetRenderer()->Render(s.str());
   }
