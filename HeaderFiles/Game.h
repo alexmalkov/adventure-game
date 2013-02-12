@@ -13,6 +13,7 @@ enum RoomId { kDungeon, kHallway, kMonster, kChambers, kDF, kNumRooms};
 #include "Player.h"
 #include "Enemy.h"
 
+
 ////////////////////////////////////////////////////////////////////////////////
 class Game 
 {
@@ -22,6 +23,8 @@ private:
   IRenderer *renderer;
   Room      *rooms[kNumRooms]; ///< Map.
   Room      *currentRoom;
+
+
 public:
   Game();
   virtual ~Game();

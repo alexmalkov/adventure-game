@@ -13,5 +13,6 @@ struct Attacker
   virtual ~Attacker() {}
   virtual void Attack( GameObject *pObject ) = 0;
 };
+
 ////////////////////////////////////////////////////////////////////////////////
 #endif

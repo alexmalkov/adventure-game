@@ -7,36 +7,39 @@
 #define __DarkFoster_h__
 #include "Room.h"
 #include "Enemy.h"
-#include <list>
+#include <vector>
 #include <sstream>
 #include <algorithm>  
+#include "LurkCommand.h" 
 #include <iostream>
+#include <random>       
+#include <chrono>  
+
 using namespace std;
-
-
-void printFunction (Enemy& enemy) { 
-     cout <<  enemy.GetName() << endl;
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////
 class DarkForest : public Room{
-
+  
 private:  
+  vector<Enemy> enemyVector;
   Enemy* currentEnemy;
-  list<Enemy> enemiesList;
   bool noticedPlayer;
+  int numberOfEnemies;
 
 public:
+  vector<Enemy> * GetEnemyVector (){
+    return & enemyVector;
+  }
+
+
   DarkForest(){
 
-      currentEnemy = new Enemy();
+      //currentEnemy = new Enemy();
       noticedPlayer = false;
-    
+      numberOfEnemies = 4; //number of enemies can be changed; you increase it, add also necessary cases.
+
       SetDescription("You are completely lost, and find yourself out in some very very dark place....");
-    
-      for (int i = 0; i != 4; i++){
+       
+      for (int i = 0; i != numberOfEnemies; i++){
         
             Enemy e;
 
@@ -44,138 +47,115 @@ public:
             { 
               case 0:
                 e.SetName("Dark elf");
-                e.SetHitpoints(i);
-                enemiesList.push_back(e);
+                e.SetHitpoints(i+1);
+                enemyVector.push_back(e);
                 break;
 
               case 1:
                 e.SetName("Angry Dark elf");
-                e.SetHitpoints(i);
-                enemiesList.push_back(e);
+                e.SetHitpoints(i+2);
+                enemyVector.push_back(e);
                 break;
 
               case 2:
                 e.SetName("Dark elf wizard");
-                e.SetHitpoints(i);
-                enemiesList.push_back(e);
+                e.SetHitpoints(i+3);
+                enemyVector.push_back(e);
                 break;
 
               case 3:
                 e.SetName("King of Elves"); // Elves :) 
-                e.SetHitpoints(i);
-                enemiesList.push_back(e);
+                e.SetHitpoints(i+4);
+                enemyVector.push_back(e);
                 break;
             }
-            
-          // Enemy e;
+
+          }      
+
+        //* C++11 feature *//
+        //* shuffle *//
+
+        //unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+        //shuffle (enemyVector.begin(), enemyVector.end(), default_random_engine(seed));
         
-          // ostringstream s;
-          // s <<  "Dark Elf " << endl; //<< i; //add number to the stream
-          // e.SetName(s.str());
-          // e.SetHitpoints(i);
-          // enemiesList.push_back(e);
-
-        }
+        random_shuffle(enemyVector.begin(), enemyVector.end());
+        
+        currentEnemy = &*enemyVector.begin();
+  } 
 
 
-        //Why doesn't this code work here. but works in Update()?
-       /////////////////////////////////////////////////////////////////////
-       //for_each(enemiesList.begin(), enemiesList.end(), printFunction);//
-      /////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////
+  // bool brandNewFunction(Enemy enemy){
+  //   return enemy.IsAlive();
+  // }
+  /////////////////////////////////////
 
-  }
+
   void Update() {
 
-      // for(list<Enemy>::iterator it = enemiesList.begin(); it != enemiesList.end(); it++)
-      // { 
-      //   ostringstream s;
-      //   if (it->IsAlive()){
-      //     s << "Alive: " << it->GetName() << endl;         
-      //   }
-      //   else{
-      //     s << "Dead: " << it->GetName() << endl;  
-      //   }
-      //   GetGame()->GetRenderer()->Render(s.str());
-      // }
+     
+     // currentEnemy = enemyVector.begin();
 
-      /////////////////////////////////////////////////////////////////////
-      // for_each(enemiesList.begin(), enemiesList.end(), printFunction);//
-      /////////////////////////////////////////////////////////////////////
+     
 
-      for_each(enemiesList.begin(), enemiesList.end(), printFunction);
-
-      for(list<Enemy>::iterator it = enemiesList.begin(); it != enemiesList.end(); it++)
-      { 
-
-        if (it->IsAlive()){
-            
-            currentEnemy = &*it;
-            break; //it doesn't matter who eles is alive
-        }
-        
-      }
-
-      // cout << currentEnemy->GetName() << endl;
-
-
+    // vector<Enemy>::iterator it = find_if(enemyVector.begin(), enemyVector.end(), brandNewFunction);
         
       if ( currentEnemy->IsAlive() && noticedPlayer )
       { 
           std::ostringstream s;
           Player & player = GetGame()->GetPlayer();
-          s << currentEnemy->GetName() << " (" << currentEnemy->GetHitpoints() << "HP)" << " attacks " << player.GetName() << "\n";
+          s << currentEnemy->GetName() << " (" << currentEnemy->GetHitpoints() << "HP)" 
+                            << " attacks " << player.GetName() << "\n";
           GetGame()->GetRenderer()->Render(s.str());
 
           currentEnemy->Attack(&player);
        }
+
        noticedPlayer = true;
- 
-     }
-
-
-
-
-    Room * OnMoveCommand( MoveCommand *pCommand )
-    {
-      if ( currentEnemy->IsAlive())
-      {
-         std::ostringstream s;
-         s << currentEnemy->GetName() << ": Nice try! But you won't go anywhere!" << "\n";
-         GetGame()->GetRenderer()->Render(s.str());
-         return NULL;
-      }
-      else
-        return GetNextRoom( pCommand->GetDirection() );
-    }
-  
-  void OnAttack( AttackCommand *pCommand )
-  {
-    if ( currentEnemy->IsAlive() && noticedPlayer)
-    {
-      Player & player = GetGame()->GetPlayer();
-      std::ostringstream s;
-      s << player.GetName() << "(" << player.GetHitpoints() << " HP)" << " attacks " << currentEnemy->GetName() <<"\n";
-      GetGame()->GetRenderer()->Render(s.str());
-      player.Attack( currentEnemy );
-      // Change room description a bit
-      if ( currentEnemy->IsAlive() == false )
-      {
-         SetDescription("You are in the dark foret. Somethings strange is going on.");
-      }
-    } 
-    else 
-    {
-      // to encourage player to stop beating it further
-      GetGame()->GetRenderer()->Render("Whoa! You already got your pound of flesh out of that one. Literally.\n");
-    }
-
   }
 
+      Room * OnMoveCommand( MoveCommand *pCommand )
+      {
+        if ( currentEnemy->IsAlive())
+        {
+           std::ostringstream s;
+           s << currentEnemy->GetName() << ": Nice try! But you won't go anywhere!" << "\n";
+           GetGame()->GetRenderer()->Render(s.str());
+           return NULL;
+        }
+        else
+          return GetNextRoom( pCommand->GetDirection() );
+      }
+    
 
+      void OnAttack( AttackCommand *pCommand )
+      {
+        if ( currentEnemy->IsAlive() && noticedPlayer)
+        {
+          Player & player = GetGame()->GetPlayer();
+          std::ostringstream s;
+          s << player.GetName() << "(" << player.GetHitpoints() << " HP)" << " attacks " 
+                            << currentEnemy->GetName() <<"\n";
+          GetGame()->GetRenderer()->Render(s.str());
+          player.Attack( currentEnemy );
 
+          // Change room description a bit
+          if ( currentEnemy->IsAlive() == false )
+          {
+             SetDescription("You are in the dark forest. Somethings strange is going on.");
+          }
+        } 
+        else 
+        {
+          // to encourage player to stop beating it further
+          GetGame()->GetRenderer()->Render("Whoa! You already got your pound of flesh out of that one. Literally.\n");
+        }
 
-
+      }
 
 };
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
 #endif

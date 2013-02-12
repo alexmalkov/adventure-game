@@ -27,6 +27,7 @@ using namespace std;
 #define DEV_NAME "anssi.grohn@pkamk.fi"
 #define YEAR 2011
 
+
 ////////////////////////////////////////////////////////////////////////////////
 Game::Game() : running(true)
 {
@@ -65,6 +66,7 @@ Game::Game() : running(true)
 
   rooms[kChambers]->SetNextRoom(South,rooms[kMonster]);
   
+
   currentRoom = rooms[kDungeon];
 
 

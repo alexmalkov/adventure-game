@@ -14,6 +14,8 @@
 #include "ShowGoldCommand.h"
 #include "SilverFactory.h"
 #include "HelpCommand.h"
+#include "LurkCommand.h"
+#include "DarkForest.h"
 #include "Game.h"
 #include <sstream>
 #include <string>
@@ -60,6 +62,11 @@ CommandFactory::Create( const std::string & str )
   if ( word == "attack" )
   {
     return new AttackCommand(m_pGame);
+  }
+
+  if ( word == "lurk" )
+  {
+    return new LurkCommand(m_pGame);
   }
 
   if ( word == "move" )

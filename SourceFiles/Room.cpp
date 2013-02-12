@@ -8,6 +8,8 @@
 #include "Game.h"
 #include "IRenderer.h"
 #include <cstdlib>
+
+using namespace std;
 ////////////////////////////////////////////////////////////////////////////////
 Room::Room()
 {
