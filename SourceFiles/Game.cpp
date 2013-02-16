@@ -66,7 +66,6 @@ Game::Game() : running(true)
 
   rooms[kChambers]->SetNextRoom(South,rooms[kMonster]);
   
-
   currentRoom = rooms[kDungeon];
 
 

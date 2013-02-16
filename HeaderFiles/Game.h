@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 class IRenderer;
 class Room;
+class DarkForest;
 ////////////////////////////////////////////////////////////////////////////////
 enum RoomId { kDungeon, kHallway, kMonster, kChambers, kDF, kNumRooms};
 #include "Player.h"
@@ -24,7 +25,6 @@ private:
   Room      *rooms[kNumRooms]; ///< Map.
   Room      *currentRoom;
 
-
 public:
   Game();
   virtual ~Game();
@@ -36,6 +36,7 @@ public:
   Player & GetPlayer();
   Room * GetCurrentRoom();
   void SetCurrentRoom( Room *pRoom );
+
 };
 ////////////////////////////////////////////////////////////////////////////////
 #endif

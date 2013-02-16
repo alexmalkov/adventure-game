@@ -38,13 +38,18 @@ public:
 
 	void Execute ()
 	{
-    Print p;
-		vector<Enemy> * enemyVector = GetGame()->GetCurrentRoom()->GetEnemyVector();
+    Print print;
+    //Print p;
+		vector<Enemy> * enemyVector =  GetGame()->GetCurrentRoom()->GetEnemyVector();
 
     //for_each
-    for_each(enemyVector->begin(), enemyVector->end(),p);
+    for_each(enemyVector->begin(), enemyVector->end(),print);
 
 	}
+
+  
+
+
 };
 
 

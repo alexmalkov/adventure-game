@@ -26,6 +26,15 @@ private:
   int numberOfEnemies;
 
 public:
+
+  Enemy * GetCurrentEnemy(){
+    return currentEnemy;
+  }
+
+  void SetCurrentEnemy(Enemy * enemy){
+    currentEnemy = enemy;
+  }
+
   vector<Enemy> * GetEnemyVector (){
     return & enemyVector;
   }
@@ -37,7 +46,7 @@ public:
       noticedPlayer = false;
       numberOfEnemies = 4; //number of enemies can be changed; you increase it, add also necessary cases.
 
-      SetDescription("You are completely lost, and find yourself out in some very very dark place....");
+      SetDescription("This place is going to kill you!");
        
       for (int i = 0; i != numberOfEnemies; i++){
         
@@ -46,74 +55,78 @@ public:
             switch (i)
             { 
               case 0:
-                e.SetName("Dark elf");
+                e.SetName("Archer");
                 e.SetHitpoints(i+1);
                 enemyVector.push_back(e);
                 break;
 
               case 1:
-                e.SetName("Angry Dark elf");
+                e.SetName("Assasin");
                 e.SetHitpoints(i+2);
                 enemyVector.push_back(e);
                 break;
 
               case 2:
-                e.SetName("Dark elf wizard");
+                e.SetName("Berserker");
                 e.SetHitpoints(i+3);
                 enemyVector.push_back(e);
                 break;
 
               case 3:
-                e.SetName("King of Elves"); // Elves :) 
+                e.SetName("Wizard"); 
                 e.SetHitpoints(i+4);
                 enemyVector.push_back(e);
                 break;
             }
 
+
+            
           }      
 
-        //* C++11 feature *//
-        //* shuffle *//
+        /** C++11 feature 
+        * shuffle /
 
-        //unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-        //shuffle (enemyVector.begin(), enemyVector.end(), default_random_engine(seed));
+        unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+        shuffle (enemyVector.begin(), enemyVector.end(), default_random_engine(seed));*/
         
-        random_shuffle(enemyVector.begin(), enemyVector.end());
-        
-        currentEnemy = &*enemyVector.begin();
+       
   } 
 
 
-    //////////////////////////////////////
+  ////////////////////////////////////////
   // bool brandNewFunction(Enemy enemy){
   //   return enemy.IsAlive();
-  // }
+  // } 
   /////////////////////////////////////
 
+/////////////////////////////////////////////////////////
+      void Update() {
 
-  void Update() {
+        if (currentEnemy == NULL)
+        {
+            cout << "See anybody?\nUse lurk command to check if there is somebody" << endl;
+            random_shuffle(enemyVector.begin(), enemyVector.end());
+            SetCurrentEnemy(&*enemyVector.begin());
+            cout <<  "You see a " << currentEnemy->GetName() << ". You cannot avoid his attack!" << endl;  
+         
 
-     
-     // currentEnemy = enemyVector.begin();
-
-     
-
-    // vector<Enemy>::iterator it = find_if(enemyVector.begin(), enemyVector.end(), brandNewFunction);
-        
-      if ( currentEnemy->IsAlive() && noticedPlayer )
-      { 
-          std::ostringstream s;
-          Player & player = GetGame()->GetPlayer();
-          s << currentEnemy->GetName() << " (" << currentEnemy->GetHitpoints() << "HP)" 
-                            << " attacks " << player.GetName() << "\n";
-          GetGame()->GetRenderer()->Render(s.str());
-
-          currentEnemy->Attack(&player);
+         // cout << "currentEnemy: " << typeid(currentEnemy).name() << endl; 
        }
+        
+        if ( currentEnemy->IsAlive() && noticedPlayer )
+        { 
+            std::ostringstream s;
+            Player & player = GetGame()->GetPlayer();
+            s << currentEnemy->GetName() << " (" << currentEnemy->GetHitpoints() << "HP)" 
+                              << " attacks " << player.GetName() << "\n";
+            GetGame()->GetRenderer()->Render(s.str());
 
-       noticedPlayer = true;
-  }
+            currentEnemy->Attack(&player);
+         }
 
+         noticedPlayer = true;
+   }
+/////////////////////////////////////////////////////////
       Room * OnMoveCommand( MoveCommand *pCommand )
       {
         if ( currentEnemy->IsAlive())
@@ -127,7 +140,7 @@ public:
           return GetNextRoom( pCommand->GetDirection() );
       }
     
-
+//////////////////////////////////////////////////////////
       void OnAttack( AttackCommand *pCommand )
       {
         if ( currentEnemy->IsAlive() && noticedPlayer)
@@ -148,6 +161,7 @@ public:
         else 
         {
           // to encourage player to stop beating it further
+          cout << currentEnemy->GetName();
           GetGame()->GetRenderer()->Render("Whoa! You already got your pound of flesh out of that one. Literally.\n");
         }
 

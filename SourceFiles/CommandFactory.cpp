@@ -18,6 +18,7 @@
 #include "HelpCommand.h"
 #include "LurkCommand.h"
 #include "DarkForest.h"
+#include "CallCommand.h"
 #include "Game.h"
 #include <sstream>
 #include <string>
@@ -81,6 +82,39 @@ CommandFactory::Create( const std::string & str )
   if ( word == "lurk" )
   {
     return new LurkCommand(m_pGame);
+  }
+
+  if ( word == "call" )
+  {
+    string name;
+    s >> name;
+    CallCommand *command = NULL;
+    
+    if ( name == "Archer" )
+    {
+      command = new CallCommand(m_pGame);
+      command->SetName("Archer");
+      return command;
+    }
+    else if ( name == "Assasin" )
+    {
+      command = new CallCommand(m_pGame);
+      command->SetName("Assasin");
+      return command;
+    }
+    else if ( name == "Berserker" )
+    {
+      command = new CallCommand(m_pGame);
+      command->SetName("Berserker");
+      return command;
+    }
+    else if ( name == "Wizard" )
+    {
+      command = new CallCommand(m_pGame);
+      command->SetName("Wizard");
+      return command;
+    }
+
   }
 
   if ( word == "move" )

@@ -39,6 +39,8 @@ public:
   virtual Room * OnMoveCommand( MoveCommand *pCommand );
   virtual void   OnAttack( AttackCommand *pCommand );
   virtual vector<Enemy> * GetEnemyVector (){};
+  virtual void SetCurrentEnemy(Enemy * enemy){};
+  virtual Enemy * GetCurrentEnemy(){};
 };
 ////////////////////////////////////////////////////////////////////////////////
 #endif
