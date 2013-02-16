@@ -83,7 +83,7 @@ public:
             
           }      
 
-        /** C++11 feature 
+/*        * C++11 feature 
         * shuffle /
 
         unsigned seed = chrono::system_clock::now().time_since_epoch().count();

@@ -24,14 +24,16 @@ public:
   void SetName(string name) {_name = name;}
   string GetName(){return _name;}
 
-      bool func (Enemy enemy){
-        
+  bool func (Enemy enemy){
+
           return enemy.GetName() == _name && enemy.IsAlive();
 
           // cout << enemy.GetName() << endl;
           //   cout << _name << endl;
           //   cout << enemy.IsAlive() << endl;          
-      }
+  }
+
+
 
 
   void Execute(){
@@ -39,7 +41,10 @@ public:
         vector<Enemy> *enemyVector = GetGame()->GetCurrentRoom()->GetEnemyVector(); 
         vector<Enemy>::iterator it;
 
-        it = find_if(enemyVector->begin(), enemyVector->end(), bind1st(mem_fun(&CallCommand::func), this));
+        /*it = find_if(enemyVector->begin(), enemyVector->end(), bind1st(mem_fun(&CallCommand::func), this));*/
+
+        it = find_if(enemyVector->begin(), enemyVector->end(), [&](Enemy enemy) {return enemy.GetName() == _name && enemy.IsAlive();});
+
         GetGame()->GetCurrentRoom()->SetCurrentEnemy(&*it);
 
         cout << _name << endl;        
