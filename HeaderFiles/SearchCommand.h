@@ -13,21 +13,20 @@
 #include "Game.h"
 #include <sstream>
 #include "IRenderer.h"
-#include <typeinfo> 
+#include <typeinfo>
+#include <vector> 
+#include <iostream>
+#include <algorithm>
+using namespace std;
 ////////////////////////////////////////////////////////////////////////////////
 class SearchCommand : public Command
 {
 public: 
   SearchCommand( Game *pGame ) : Command(pGame) {}
   
-  // template <typename T>
-	 //  void sum(Player& p, T m)
-	 //  {
-		// p + m->GetAmount();		
-	 //  }
-  
   void Execute() 
   { 
+	 
 	  
 	Game *game = GetGame();
 	Player & p = game->GetPlayer(); 
@@ -37,12 +36,12 @@ public:
     {
 		std::ostringstream s;
 
-		//60% that you get siver 
-		if (rand()%1000<600)
+		//90% that you get siver 
+		if (rand()%1000<900)
 		{
-
 		   SilverFactory sf;
 		   Silver *sil = sf.Create( 1+rand()%50 );
+		   p.silHistory.push_back(sil->GetAmount());
 		   int SilverFromFactory;
 		   SilverFromFactory = sil->GetAmount();
 

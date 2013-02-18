@@ -1,4 +1,4 @@
 cd SourceFiles
-g++ adventure.o game.o player.o -L ../bin -lEngine -o ../Game.exe
+g++ -std=c++0x adventure.o game.o player.o -L ../bin -lEngine -o ../Game.exe
 
 pause

@@ -19,6 +19,7 @@
 #include "LurkCommand.h"
 #include "DarkForest.h"
 #include "CallCommand.h"
+#include "SilverHistoryCommand.h"
 #include "Game.h"
 #include <sstream>
 #include <string>
@@ -33,6 +34,10 @@ CommandFactory::Create( const std::string & str )
   std::string word;
   s >> word;
   
+  if(word=="silhist")
+  {
+    return new SilverHistoryCommand(m_pGame);
+  }
   
   if(word == "help")
   {

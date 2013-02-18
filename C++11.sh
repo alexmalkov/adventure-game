@@ -18,4 +18,4 @@ g++ adventure.o Game.o Player.o -L ../bin -lEngine -o ../Game.out
 cd ../
 
 ./Game.out
-
+pause

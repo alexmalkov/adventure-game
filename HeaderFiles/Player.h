@@ -8,6 +8,9 @@
 #include <string>
 #include "GameObject.h"
 #include "Robbers.h"
+#include <vector>
+#include <iostream>
+using namespace std;
 class Game;
 ////////////////////////////////////////////////////////////////////////////////
 class Player : public GameObject
@@ -16,8 +19,10 @@ private:
   Game *game;
   int goldAmount;
   int silverAmount;
+
 public:
   Player();
+  vector<int> silHistory;
 
   virtual ~Player();
   void SetGame( Game * game );
